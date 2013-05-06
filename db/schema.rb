@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130505131344) do
+ActiveRecord::Schema.define(:version => 20130506162933) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(:version => 20130505131344) do
     t.string   "postedBy"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.text     "description"
+    t.string   "salary"
+    t.text     "education"
   end
 
   create_table "microposts", :force => true do |t|
@@ -66,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20130505131344) do
     t.string   "mime_type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "surveys", :force => true do |t|
@@ -77,9 +81,17 @@ ActiveRecord::Schema.define(:version => 20130505131344) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.string   "password_digest"
+    t.string   "remember_token"
+    t.boolean  "admin",           :default => false
+    t.boolean  "faculty",         :default => false
+    t.string   "avatar"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
   create_table "workplaces", :force => true do |t|
     t.integer  "user_id"
@@ -89,6 +101,10 @@ ActiveRecord::Schema.define(:version => 20130505131344) do
     t.string   "phone"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "user_email"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
   end
 
 end
