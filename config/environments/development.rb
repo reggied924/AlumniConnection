@@ -34,4 +34,21 @@ AlumniConnection4::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  #I added this in 
+    AlumniConnection4::Application.configure do
+    config.action_mailer.delivery_method = :smtp 
+    
+    config.action_mailer.smtp_settings = {
+      address:                "smtp.gmail.com" , 
+      port:                   587 , 
+      domain:                 "alumniconnection.com" ,
+      authentication:         "plain" , 
+      user_name:              "redaniel924@gmail.com" ,
+      password:               "Jazmine09" , 
+      enable_starttls_auto:   true
+    }
+    
+    end 
+  
 end

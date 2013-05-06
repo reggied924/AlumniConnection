@@ -1,4 +1,49 @@
 AlumniConnection4::Application.routes.draw do
+  
+  resources :resumes
+  
+  
+    resources :surveys
+  
+  
+    resources :job_postings
+  
+  
+    resources :workplaces
+    
+    match "users/:id/makeAdmin" => "users#makeAdmin", :as => "makeAdmin"
+    match "users/:id/removeAdmin" => "users#removeAdmin", :as => "removeAdmin"
+    match "users/:id/addFaculty" => "users#addFaculty", :as => "addFaculty"
+    match "users/:id/removeFaculty" => "users#removeFaculty", :as => "removeFaculty"
+  
+  
+    resources :users do
+      member do
+        get :following, :followers, :workplace
+        put :admin
+      end
+    end
+    resources :sessions, only: [:new, :create, :destroy]
+    resources :microposts, only: [:create, :destroy]
+    resources :relationships, only: [:create, :destroy]
+        
+    root to: 'static_pages#home'
+  
+    match '/signup',  to: 'users#new'
+    match '/signin',  to: 'sessions#new'
+    match '/signout', to: 'sessions#destroy', via: :delete
+    
+    controller :sessions do
+        get  '/signin' => :new
+        post '/signin' => :create
+        delete '/signout' => :destroy
+      end
+        
+    match '/help',    to: 'static_pages#help'
+    match '/about',   to: 'static_pages#about'
+    match '/contact', to: 'static_pages#contact'
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
