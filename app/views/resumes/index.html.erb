@@ -1,0 +1,49 @@
+<h1>Alumni Resumes</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<tr><th>My Resumes</th></tr>
+<% @resumes.each do |resume| %>
+	<% if resume.user_id == current_user.id %> 
+	  <tr>
+	  	<td><%= resume.name %></td>
+	    <td><%= link_to 'View', resume %></td>
+	    <td><%= link_to 'Edit', edit_resume_path(resume) %></td>
+	    <td><%= link_to 'Destroy', resume, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	  </tr>
+	<% end %>	
+<% end %>
+</table>
+
+<p />
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+
+<tr><th>Alumni Resumes</th></tr>
+<% @resumes.each do |resume| %>
+	<% if resume.user_id != current_user.id %> 
+		<% @relationships.each do |rel| %>
+			<% if ((current_user.id == rel.follower_id) && (resume.user_id == rel.followed_id))%>
+				  <tr>
+				  	<td><%= resume.name %></td>
+				    <td><%= link_to 'View', resume %></td></td>
+				  </tr>
+			<% end %>
+		<% end %>
+	<% end %>	
+<% end %>
+</table>
+
+<p /><p /><p /><p />
+<%= link_to 'New Resume', new_resume_path %>

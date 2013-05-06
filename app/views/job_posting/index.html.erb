@@ -1,0 +1,57 @@
+<!--Formatted layout of tables for uniform/structured look - DStone - 3-7-13-->
+<h1>Job Listings</h1>
+
+<% @job_postings.each do |job_posting| %>
+	<p><h3><%= job_posting.company %> - <%= job_posting.position %></h3></p>
+	<table width=100% align="center">
+		<th colspan="4">
+			<tr>
+				<td colspan="2" width=15%><b>Address:</b></td>
+				<td colspan="2"><%= job_posting.address %></td>
+			</tr>
+			<tr>
+				<td colspan="2" width=15%><b>Contact Name:</b></td>
+				<td colspan="2"><%= job_posting.contact_name %></td>
+			</tr>
+			<tr>
+				<td colspan="2" width=15%><b>Contact Phone:</b></td>
+				<td colspan="2"><%= job_posting.contact_phone %></td>				
+			</tr>
+			<tr>
+				<td colspan="2" width=15%><b>Contact Email:</b></td>
+				<td colspan="2"><%= job_posting.contact_email %></td>
+			</tr>
+			<tr>
+				<td colspan="2" width=15%><b>Posted By:</b></td>
+				<td colspan="2"><%= job_posting.postedBy %></td>				
+			</tr>	
+			<tr>
+				<td colspan="2" width=15%><b>Salary:</b></td>
+				<td colspan="2"><%= job_posting.salary %></td>				
+			</tr>
+			<tr>
+				<td colspan="2" width=15%><b>&nbsp;</b></td>
+				<td colspan="2">&nbsp;</td>				
+			</tr>
+			<tr>
+				<td colspan="2" width=15%><b>Job Description:</b></td>
+				<td colspan="2"><%= job_posting.description %></td>				
+			</tr>
+
+			<tr>
+				<td colspan="2" width=15%><b>&nbsp;</b></td>
+				<td colspan="2">&nbsp;</td>				
+			</tr>
+
+			<tr>
+				<td colspan="2" width=15%><b>Education:</b></td>
+				<td colspan="2"><%= job_posting.education %></td>				
+			</tr>	
+		</th>
+	</table>
+	<hr />
+<% end %>
+
+<br />
+
+<%= link_to 'New Job Posting', new_job_posting_path %>

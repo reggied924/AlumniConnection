@@ -1,0 +1,70 @@
+<!-- Added some alignment to the headers and table data - DStone - 3/4/2013 -->
+<!-- Fixed misspelling of Placeses to Places -DStone - 3/4/2013 -->
+
+<h1>Alumni Places of Work</h1>
+
+
+<table>
+	<tr><td><b>My Workplaces</b></td></tr>
+	  <tr>
+	  	<th align=left>User</th>
+		<th>&nbsp;</th>
+		<th align=left>Position</th>
+		<th>&nbsp;</th>
+		<th align=left>Company</th>
+		<th>&nbsp;</th>	
+	  </tr>
+	<% @myWorkplaces.each do |workplace| %>
+	  <tr>
+	    <td align=left><%= workplace.user_email %></td>
+	    <td>&nbsp;</td>
+	    <td align=left><%= workplace.position %></td>
+	    <td>&nbsp;</td>
+	    <td align=left><%= workplace.company %></td>
+	    <td>&nbsp;</td>
+	  </tr>
+	<% end %>
+</table>
+
+
+<p />
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+
+<tr><td><b>Alumni Workplaces</b></td></tr>
+	  <tr>
+	  	<th align=left>User</th>
+		<th>&nbsp;</th>
+		<th align=left>Position</th>
+		<th>&nbsp;</th>
+		<th align=left>Company</th>
+		<th>&nbsp;</th>	
+	  </tr>
+<% @followedWorkplaces.each do |workplace| %>
+  <tr>
+    <td align=left><%= workplace.user_email %></td>
+    <td>&nbsp;</td>
+    <td align=left><%= workplace.position %></td>
+    <td>&nbsp;</td>
+    <td align=left><%= workplace.company %></td>
+    <td>&nbsp;</td>
+  </tr>
+
+<% end %>
+</table>
+
+<p /><p /><p /><p />
+
+<br />
+
+
+<%= link_to 'View Job Post', job_postings_path %> |
+<%= link_to 'Add Job Posting', new_job_posting_path %>
+
+<%= gmaps(:markers => {:data => @json, :options => { :raw => '{ optimized: false }' } } ) %>

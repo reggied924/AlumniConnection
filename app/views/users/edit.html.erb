@@ -1,0 +1,53 @@
+<% provide(:title, "Edit User") %> 
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+  <%= form_for @user, :html => {:multipart => true} do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirm Password" %>
+      <%= f.password_field :password_confirmation %>
+       
+      <!--Allow users to upload resume - DStone - 3-5-2013-->
+      <p>
+      <%= link_to 'Upload Resume', new_resume_path %>
+      </p>
+      
+      &nbsp; 
+      
+      <p>
+      <%= f.label 'Upload photo' %>
+      <%= f.file_field :avatar %> 
+      </p>      
+      
+      <p>
+      	
+      	<%= f.label 'Current photo:'%> 
+      	<% if @user.avatar? %>
+      	
+      	<%= image_tag(@user.avatar, :size => "200x200")%>
+      	
+      	<% else %>
+      	
+      	<%= gravatar_for @user %>
+      	
+      	<% end %>
+      </p>
+            
+      <p>
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+      </p>
+    <% end %>
+  </div>
+  
+</div>

@@ -1,0 +1,46 @@
+<!--Added HELP - DStone - 3/4/2013 -->
+
+<% provide(:title, 'Help')%>
+
+<h1> Help </h1>
+
+	<p><b>SIGN-UP</b></p>
+<ol>	
+	<li>Click the 'Sign Up' button, on the <%= link_to "Home", root_path %> page</li>
+	<li>Follow the instructions on the  page</li>
+	<li>Click 'Create My Account' button</li>
+</ol>
+
+	<p><b>EDIT PROFILE</b></p>	
+<ol>	
+	<li>Add Work Info</li>
+	<ul>
+		<li>Click <%= link_to 'Work Information', new_workplace_path %> link</li>
+		<li>Enter work information, click 'Create Workplace' (or 'Update Info' (this is for returning users)) button</li>
+	</ul>		
+		<li>Upload Resume</li>
+	<ul>
+		<li>Click 'Account' (on menu bar)</li>
+		<% if signed_in? %>
+			<li>Click <%= link_to "Settings", edit_user_path(current_user)%></li>
+		<% else %>
+            <li>Click "Settings"</li>
+        <% end %>
+		<li>Click 'Choose File' button under 'Upload Resume'</li>
+	</ul>
+</ol>	
+	<p><b>MANAGE FRIENDS AND MICROPOSTS</b></p>	
+<ol>
+		<li>Find Friends</li>
+	<ul>
+		<li>Click <%= link_to "Users", users_path %> (on menu bar)</li>
+		<li>Find friend, click on their link</li>
+		<li>Click 'Follow' button on Friend's profile</li>
+	</ul>
+		<li>Micropost</li>
+	<ul>
+		<li>Click <%= link_to "Home", root_path %> (on menu bar)</li>
+		<li>Click in text box 'What's on your mind?'</li>
+		<li>Type comment. When done, click 'Post' button.</li>
+	</ul>	
+</ol>

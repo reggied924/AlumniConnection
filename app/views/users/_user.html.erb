@@ -1,0 +1,25 @@
+<li>
+	<% if user.avatar? %>
+
+	<%= image_tag(user.avatar, :size => "70x75")%>
+
+	<% else %>
+
+	<%= gravatar_for user, size: 52 %>
+
+	<% end %>
+  <%= link_to user.name, user %>
+  <% if current_user.admin? && !current_user?(user) %> <br /> <br />
+  
+     <%= link_to "Make Admin", makeAdmin_path(user), method: :makeAdmin, confirm: "You sure?" %>
+    
+    | <%= link_to "Remove Admin", removeAdmin_path(user), method: :removeAdmin, confirm: "You sure?" %>
+    
+    | <%= link_to "Add to Faculty", addFaculty_path(user), method: :addFaculty, confirm: "You sure?" %>
+    
+    | <%= link_to "Remove from Faculty", removeFaculty_path(user), method: :removeFaculty, confirm: "You sure?" %>
+    
+    | <%= link_to "Delete", user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+</li>

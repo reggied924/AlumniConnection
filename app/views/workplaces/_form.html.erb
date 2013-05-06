@@ -1,0 +1,22 @@
+<%= form_for(@workplace) do |f| %>
+  <%= render 'shared/error_messages', object: f.object%>
+  
+  
+    <%= f.label :user_email, "Your Email Address" %>
+    <%= f.text_field :user_email %>
+  
+    <%= f.label :position %>
+    <%= f.text_field :position %>
+  
+    <%= f.label :company %>
+    <%= f.text_field :company %>
+  
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  
+    <%= f.submit "Update Info", class: "btn btn-large btn-primary" %>
+ 
+<% end %>
